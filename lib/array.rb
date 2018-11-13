@@ -23,4 +23,40 @@ class Array
     self.each { |ele| hash[ele] += 1 }
     hash
   end
+
+  def my_count(val)
+    count = 0
+    self.each { |ele| count += 1 if ele == val }
+    count
+  end
+
+  def my_index(val)
+    self.each_with_index { |ele, i| return i if ele == val }
+    nil
+  end
+
+  def my_uniq
+    seen = []
+    new_arr = []
+
+    self.each do |ele|
+      next if seen.include?(ele)
+      new_arr << ele
+      seen << ele
+    end
+
+    new_arr
+  end
+
+  def my_transpose
+    hash = Hash.new { |h, k| h[k] = [] }
+
+    self.each do |sub_arr|
+      sub_arr.each_with_index do |ele, i|
+        hash[i] << ele
+      end
+    end
+
+    hash.values
+  end
 end
